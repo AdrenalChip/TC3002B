@@ -26,9 +26,8 @@
             Terraria
    --- There are 1000 images per class and all are sized 640 x 360. They are in the .png format.
    --- ThisDataset was made by saving frames every few seconds from famous gameplay videos on Youtube
-   
 
-5. Number of Instances: 10000 (1000 in each of three classes)
+5. Number of Instances: 10000 (1000 in each of 10 classes)
 
 6. Number of Attributes: Images
 
