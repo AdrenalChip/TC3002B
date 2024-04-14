@@ -14,9 +14,9 @@ Las clases son las siguientes:
 * Apex Legends
 * Among Us
 
-Para realizar la separación de los sets de prueba y entrenamiento se uso el _script_ [movetraintestfiles.py](https://github.com/AdrenalChip/TC3002B) que mueve de una carpeta a otra las imagenes de manera aleatoria, respetando la relacion 80% - 20%.
-
+Para realizar la separación de los sets de prueba y entrenamiento se uso el _script_ [movetraintestfiles.py](https://github.com/AdrenalChip/TC3002B/blob/main/movetraintestfiles.py) que mueve de una carpeta a otra las imagenes de manera aleatoria, respetando la relacion 80% - 20%.
 Más información del dataset dentro del archivo *gameplay_images.txt*.   
 
 [Link al Drive de las Imágenes](https://drive.google.com/drive/folders/11SkaT7sGMPT6QlXJ7xYzSnjdPyowvUmV?usp=sharing)
+
 [Link al Dataset de Kaggle](https://www.kaggle.com/datasets/aditmagotra/gameplay-images)
