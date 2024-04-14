@@ -1,0 +1,43 @@
+1. Title: Gameplay Images
+	Updated 2022 by The_AlphaLaser
+
+2. Sources:
+     (a) Creator: The_AlphaLaser (https://www.kaggle.com/aditmagotra)
+     (b) Date: 2022
+
+3. Past Usage:
+   1. Zeynep Kaya. "Gameplay Images Classification/CNN %97 Test Accu"
+       (January,2024).(https://www.kaggle.com/code/zeyneepkaya54/gameplay-images-classification-cnn-97-test-accu)
+   2. Hüseyin Önal. "Gameplay Image Classification"
+       (January,2024).(https://www.kaggle.com/code/hseyinnal/gameplay-image-classification)
+
+4. Relevant Information:
+   --- This is a dataset of 10 very famous video games in the world.
+        These include
+            Among Us
+            Apex Legends
+            Fortnite
+            Forza Horizon
+            Free Fire
+            Genshin Impact
+            God of War
+            Minecraft
+            Roblox
+            Terraria
+   --- There are 1000 images per class and all are sized 640 x 360. They are in the .png format.
+   --- ThisDataset was made by saving frames every few seconds from famous gameplay videos on Youtube
+   
+
+5. Number of Instances: 10000 (1000 in each of three classes)
+
+6. Number of Attributes: Images
+
+7. Attribute Information:
+   Size: 640 x 360
+   Format: PNG
+
+8. Missing Attribute Values: None
+
+Summary Statistics:
+
+9. Class Distribution: 10% for each of 10 classes.
