@@ -2,10 +2,6 @@
 #In this case moving 20% to the Test folder ad keeping 80% for Training
 #This file was made and tested in Google Colab
 
-
-from google.colab import drive
-drive.mount('/content/drive')
-
 import os
 import random
 import shutil
@@ -36,8 +32,8 @@ def move_random_files(source_folder, destination_folder, percentage):
         shutil.move(source_path, destination_path)
         print(f"Moved {file_name} to {destination_folder}")
 
-source_folder = "/content/drive/MyDrive/Colab Notebooks/archive_benji/Dataset/Terraria"
-destination_folder = "/content/drive/MyDrive/Colab Notebooks/archive_benji/Dataset/Terraria_Test"
+source_folder = "C:\\Users\\jorge\\Documents\\Videogames_img\\TC3002B\\Dataset\\Train\\Terraria"
+destination_folder = "C:\\Users\\jorge\\Documents\\Videogames_img\\TC3002B\\Dataset\\Test\\Terraria"
 percentage = 0.2  # 20%
 
 move_random_files(source_folder, destination_folder, percentage)
