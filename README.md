@@ -27,8 +27,7 @@ Más información del dataset dentro del archivo [*gameplay_images.txt*](https:/
 ## Actividad 2.3 y Actividad 2.4
 ### Implementación del Modelo y Evualación Inicial del Modelo
 
-Se tomo como referencia lo presentando en el siguiente paper para la creación del modelo, así como las formulas para evaluar el desempeño del mismo.
-En donde se crea una Matriz de Confusión, se calcula el F1 Score y la Precision.
+Se tomo como referencia lo presentando en el siguiente paper para la creación del modelo,y la creación de la matriz de confusión para analizar los resultados con el set de datos pertenecientes al test. Asi como ver la grafica que representa los valores de accuraccy y lost del modelo al ser entrenado
 
 Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Deep Convolutional Neural Network Using Tensorflow and Transfer of Learning." Journal of the College of Education for Women 31.2 (2020): 156-171.
 [Link al Paper](https://www.iasj.net/iasj/download/7e648e76d9363337)
