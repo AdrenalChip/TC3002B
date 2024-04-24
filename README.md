@@ -34,27 +34,13 @@ Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Dee
 
 ### Modelo actual
 
-![Progress of the epochs](mod_1_epochs.png) 
-
 | | Modelo Actual | Modelo Mejorado |
 | -------------- | -------------- | -------- |
 | Hiperparametros | batch size = 32, epoch = 5, optimizer = 'adam' | |
-| Configuración de las capas | ```
-    model = models.Sequential()
-    model.add(layers.InputLayer(input_shape = (50,50,1)))
-    model.add(layers.Conv2D(32, (3, 3), activation='relu'))
-    model.add(layers.MaxPooling2D((2,2), padding = 'same'))
-    model.add(layers.Conv2D(8, (3, 3), activation='relu'))
-    model.add(layers.Flatten())
-    model.add(layers.Dense(256,activation='relu'))
-    model.add(layers.Dropout(rate = 0.2))
-    model.add(layers.Dense(64,activation='sigmoid'))
-    model.add(layers.Dropout(rate = 0.2))
-    model.add(layers.Dense(10,activation='softmax'))
-
-    model.summary()
-
-    model.compile(loss='categorical_crossentropy',
-	    					optimizer='adam',
-		    				metrics=['acc'])
-``` | ------------- |
+| Configuración de las capas | ![Configuration of the layers](mod_1_config.png) |  |
+| Progreso de las epocas | ![Progress of the epochs](mod_1_epochs.png) | |
+| Gráficas de Loss | ![Evolution of the loss](mod_1_loss.png) | |
+| Gráficas de Accuraccy | ![Evolution of the accuracy](mod_1_acc.png) | |
+| Test Loss| 0.09448109567165375 | |
+| Test Accuracy| 0.9750000238418579 | |
+| Matriz de Confusión| ![Confusion Matriz](mode_1_confu.png) | |
