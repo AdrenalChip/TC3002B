@@ -9,7 +9,8 @@ import os
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-base_dir = 'Dataset'
+base_dir = '.\\Dataset'
+#base_dir = 'Dataset'
 train_dir = os.path.join(base_dir,'Train')
 test_dir = os.path.join(base_dir, 'Test')
 batch_size = 32
