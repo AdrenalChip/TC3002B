@@ -31,3 +31,32 @@ Se tomo como referencia lo presentando en el siguiente paper para la creación d
 
 Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Deep Convolutional Neural Network Using Tensorflow and Transfer of Learning." Journal of the College of Education for Women 31.2 (2020): 156-171.
 [Link al Paper](https://www.iasj.net/iasj/download/7e648e76d9363337)
+
+### Modelo actual
+batch size = 32
+color_mode = grayscale
+epoch = 5
+
+```
+{
+    model = models.Sequential()
+    model.add(layers.InputLayer(input_shape = (50,50,1)))
+    model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+    model.add(layers.MaxPooling2D((2,2), padding = 'same'))
+    model.add(layers.Conv2D(8, (3, 3), activation='relu'))
+    model.add(layers.Flatten())
+    model.add(layers.Dense(256,activation='relu'))
+    model.add(layers.Dropout(rate = 0.2))
+    model.add(layers.Dense(64,activation='sigmoid'))
+    model.add(layers.Dropout(rate = 0.2))
+    model.add(layers.Dense(10,activation='softmax'))
+
+    model.summary()
+
+    model.compile(loss='categorical_crossentropy',
+	    					optimizer='adam',
+		    				metrics=['acc'])
+}
+```
+
+![Progress of the epochs](mod_1_epochs.png)
