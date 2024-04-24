@@ -33,7 +33,13 @@ Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Dee
 [Link al Paper](https://www.iasj.net/iasj/download/7e648e76d9363337)
 
 ### Modelo actual
-```
+
+![Progress of the epochs](mod_1_epochs.png) 
+
+| | Modelo Actual | Modelo Mejorado |
+| -------------- | -------------- | -------- |
+| Hiperparametros | batch size = 32, epoch = 5, optimizer = 'adam' | |
+| Configuración de las capas | ```
     model = models.Sequential()
     model.add(layers.InputLayer(input_shape = (50,50,1)))
     model.add(layers.Conv2D(32, (3, 3), activation='relu'))
@@ -51,11 +57,4 @@ Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Dee
     model.compile(loss='categorical_crossentropy',
 	    					optimizer='adam',
 		    				metrics=['acc'])
-```
-
-![Progress of the epochs](mod_1_epochs.png) 
-
-| | Modelo Actual | Modelo Mejorado |
-| -------------- | -------------- | -------- |
-| Hiperparametros | batch size = 32, epoch = 5, optimizer = 'adam' | |
-| -------------- | -------------- | ------------- |
+``` | ------------- |
