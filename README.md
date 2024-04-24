@@ -33,12 +33,13 @@ Ali, Aseel Sami, and MatheelEmaduldin Abdulmunem. "Image classification with Dee
 [Link al Paper](https://www.iasj.net/iasj/download/7e648e76d9363337)
 
 ### Modelo actual
+#### Hiper parametros: 
 batch size = 32
 color_mode = grayscale
 epoch = 5
+optmizer = Adam
 
 ```
-{
     model = models.Sequential()
     model.add(layers.InputLayer(input_shape = (50,50,1)))
     model.add(layers.Conv2D(32, (3, 3), activation='relu'))
@@ -56,7 +57,10 @@ epoch = 5
     model.compile(loss='categorical_crossentropy',
 	    					optimizer='adam',
 		    				metrics=['acc'])
-}
 ```
 
-![Progress of the epochs](mod_1_epochs.png)
+
+
+| Modelo Actual | Modelo Mejorado |
+| -------------- | -------------- |
+| ![Progress of the epochs](mod_1_epochs.png) | ![Progress of the epochs](mod_1_epochs.png) |
