@@ -1,8 +1,3 @@
-
-#Change file path
-#%cd "C:\\Users\\jorge\\Documents\\Videogames_img\\TC3002B"
-#!ls
-
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -10,15 +5,12 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 base_dir = '.\\Dataset'
-#base_dir = 'Dataset'
 train_dir = os.path.join(base_dir,'Train')
 test_dir = os.path.join(base_dir, 'Test')
 batch_size = 32
 
 train_ds = ImageDataGenerator(
     rescale = 1./255,
-    #zoom_range = 0.3,
-    #shear_range = 0.3
     )
 
 
@@ -33,19 +25,9 @@ train_generator = train_ds.flow_from_directory(
 class_names = train_generator.class_indices
 print(class_names)
 
-images , labels = train_generator[0]
-plt.figure()
-f, axarr = plt.subplots(1, images.shape[0], figsize=(30, 4))
-
-for i in range(images.shape[0]) :
-  axarr[i].imshow(images[i])
-
 test_ds = ImageDataGenerator(
     rescale = 1./255,
-    #zoom_range = 0.3,
-    #shear_range = 0.3
     )
-
 
 test_generator = test_ds.flow_from_directory(
     test_dir,
@@ -81,28 +63,7 @@ model.compile(loss='categorical_crossentropy',
 history = model.fit(
 						train_generator,
 						epochs = 5)
-
-acc = history.history['acc']
-loss = history.history['loss']
-
 #model.save('videogame_img_v1.h5')
-
-acc = history.history['acc']
-loss = history.history['loss']
-
-epochs = range(1, len(acc)+1)
-
-plt.plot(epochs,acc,'bo',label='train accuracy')
-plt.title('train acc')
-plt.legend()
-
-plt.figure()
-
-plt.plot(epochs,loss, 'bo', label ='training loss')
-plt.title('train loss')
-plt.legend()
-
-plt.show()
 
 savedModel = load_model('videogame_img_v1.h5')
 
