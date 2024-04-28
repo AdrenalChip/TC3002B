@@ -37,7 +37,7 @@ Se tomo como referencia lo presentando en el siguiente paper para la creación d
 | Gráficas de Accuraccy | ![Evolution of the accuracy](imgs/mod_1_acc.png) | ![Evolution of the accuracy](imgs/mod_2_acc.png) |
 | Test Loss| 0.09448109567165375 | 0.08170373737812042 |
 | Test Accuracy| 0.9750000238418579 | 0.9754999876022339 |
-| Matriz de Confusión| ![Confusion Matriz](imgs/mode_1_confu.png) | ![Confusion Matriz](imgs/mode_2_confu.png) |
+| Matriz de Confusión| ![Confusion Matriz](imgs/mod_1_confu.png) | ![Confusion Matriz](imgs/mod_2_confu.png) |
 
 ## Referencias y Enlaces de Interes
 
