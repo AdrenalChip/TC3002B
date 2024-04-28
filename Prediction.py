@@ -5,32 +5,15 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 base_dir = '.\\Dataset'
-train_dir = os.path.join(base_dir,'Train')
-test_dir = os.path.join(base_dir, 'Test')
-batch_size = 32
+queries_dir = os.path.join(base_dir,'Queries')
+batch_size = 13
 
-train_ds = ImageDataGenerator(
+queries_ds = ImageDataGenerator(
     rescale = 1./255,
     )
 
-
-train_generator = train_ds.flow_from_directory(
-    train_dir,
-    target_size = (50,50),
-    batch_size = batch_size,
-    class_mode = 'categorical',
-    color_mode = 'grayscale'
-)
-
-class_names = train_generator.class_indices
-print(class_names)
-
-test_ds = ImageDataGenerator(
-    rescale = 1./255,
-    )
-
-test_generator = test_ds.flow_from_directory(
-    test_dir,
+queries_generator = queries_ds.flow_from_directory(
+    queries_dir,
     target_size = (50,50),
     batch_size = batch_size,
     class_mode = 'categorical',
@@ -42,51 +25,19 @@ from tensorflow.keras import models
 from tensorflow.keras import layers
 from tensorflow.keras.models import load_model
 
-model = models.Sequential()
-model.add(layers.InputLayer(input_shape = (50,50,1)))
-model.add(layers.Conv2D(32, (3, 3), activation='relu'))
-model.add(layers.MaxPooling2D((2,2), padding = 'same'))
-model.add(layers.Conv2D(8, (3, 3), activation='relu'))
-model.add(layers.Flatten())
-model.add(layers.Dense(256,activation='relu'))
-model.add(layers.Dropout(rate = 0.2))
-model.add(layers.Dense(64,activation='sigmoid'))
-model.add(layers.Dropout(rate = 0.2))
-model.add(layers.Dense(10,activation='softmax'))
+savedModel = load_model('videogame_img_v3.h5')
 
-model.summary()
+queries_imgs = queries_generator[0][0]
+queries_labels = queries_generator[0][1]
 
-model.compile(loss='categorical_crossentropy',
-						optimizer='adam',
-						metrics=['acc'])
-
-history = model.fit(
-						train_generator,
-						epochs = 5)
-
-#model.save('videogame_img_v1.h5')
-
-savedModel = load_model('videogame_img_v1.h5')
-
-test_loss_original, test_acc_original = savedModel.evaluate(test_generator, steps = 25)
-print('\ntest acc :\n', test_acc_original)
-
-savedModel.summary()
-
-test_imgs = test_generator[0][0]
-test_labels = test_generator[0][1]
-
-predictions = savedModel.predict(test_imgs)
+predictions = savedModel.predict(queries_imgs)
 classes_x = np.argmax(predictions,axis=1)
 classes_x
-test_labels_y = np.argmax(test_labels,axis=1)
-
-print('Model         ', 'test loss            ', ' test accuracy ') 
-print('Original      ', test_loss_original, '   ', test_acc_original)
+queries_labels_y = np.argmax(queries_labels,axis=1)
 
 from tensorflow.math import confusion_matrix
 
-mat = confusion_matrix(classes_x, test_labels_y, num_classes= 10)
+mat = confusion_matrix(classes_x, queries_labels_y, num_classes= 10)
 print('                   ', 'Among Us ',                             'Apex Legends ',                   'Fortnite ',                    'Forza Horizon ',                 'Free Fire ',                 'Genshin Impact ',                       'God of War ',                      'Minecraft ',                     'Roblox ',                   'Terraria') 
 print('pred Among Us      ',"   ", np.array(mat[0][0]),"        ", np.array(mat[0][1]), "          ", np.array(mat[0][2]), "        ", np.array(mat[0][3]), "           ", np.array(mat[0][4]), "           ", np.array(mat[0][5]), "          ", np.array(mat[0][6]), "        ", np.array(mat[0][7]), "        ", np.array(mat[0][8]), "     ", np.array(mat[0][9])) 
 print('pred Apex Legends  ',"   ", np.array(mat[1][0]),"        ", np.array(mat[1][1]), "          ", np.array(mat[1][2]), "        ", np.array(mat[1][3]), "           ", np.array(mat[1][4]), "           ", np.array(mat[1][5]), "          ", np.array(mat[1][6]), "        ", np.array(mat[1][7]), "        ", np.array(mat[1][8]), "     ", np.array(mat[1][9]))

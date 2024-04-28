@@ -62,11 +62,11 @@ model.compile(loss='categorical_crossentropy',
 
 history = model.fit(
 						train_generator,
-						epochs = 5)
+						epochs = 8)
 
 #model.save('videogame_img_v1.h5')
 
-savedModel = load_model('videogame_img_v1.h5')
+savedModel = load_model('videogame_img_v3.h5')
 
 test_loss_original, test_acc_original = savedModel.evaluate(test_generator, steps = 25)
 print('\ntest acc :\n', test_acc_original)
