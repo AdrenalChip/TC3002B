@@ -1,8 +1,11 @@
 # TC3002B
 
-## Actividad 2.1 y Actividad 2.2
-### Generación o Selección del Set de Datos y Preprocesado de los datos 
+En este repositorio se encuentra un clasificador de imágenes a través de una red convolucional realizada en lenguaje de _Python_ con la libreria de _Tensorflow_. 
+
+## Dataset
+
 Se obtuvo un dataset de la plataforma _Kaggle_ que contiene imagenes de diferentes videojuegos. Este dataset cuenta con 10 clases y se tiene alrededor de 1000 imágenes por clase.
+
 Las clases son las siguientes:
 * Terraria
 * Roblox
@@ -15,18 +18,38 @@ Las clases son las siguientes:
 * Apex Legends
 * Among Us
 
-Para realizar la separación de los sets de prueba y entrenamiento se uso el _script_ [*movetraintestfiles.py*](https://github.com/AdrenalChip/TC3002B/blob/main/movetraintestfiles.py) que mueve de una carpeta a otra las imagenes de manera aleatoria, respetando la relacion 80% - 20% por cada clase existente.
-En el archivo [*preprocess_0.1.py*](https://github.com/AdrenalChip/TC3002B/blob/main/preprocess_0.1.py) carga las diferentes imágenes, tanto de entrenamiento como validación y normaliza los valores entre 0 y 1. 
+Estas imágenes son proveninetes del _gameplay_ de cada uno de los juegos. Es decir son imagenes dentro del juego, no contienen imágenes de los diferentes menús presentes en cada uno de los videojuegos.
 
-Más información del dataset dentro del archivo [*gameplay_images.txt*](https://github.com/AdrenalChip/TC3002B/blob/main/gameplay_images.txt).   
+Más información del dataset dentro del archivo [*gameplay_images.txt*](https://github.com/AdrenalChip/TC3002B/blob/main/gameplay_images.txt). 
 
-## Actividad 2.3 y Actividad 2.4
-### Implementación del Modelo y Evualación Inicial del Modelo
+### Tratamiento Realizado
 
-Se tomo como referencia lo presentando en el siguiente paper para la creación del modelo,y la creación de la matriz de confusión para analizar los resultados con el set de datos pertenecientes al test. Asi como ver la grafica que representa los valores de accuraccy y lost del modelo al ser entrenado
+Lo primero que se realizo fue un _script_ [*movetraintestfiles.py*](https://github.com/AdrenalChip/TC3002B/blob/main/movetraintestfiles.py) para separar el dataset en _Train_ y _Test_ en una relacion 80% y 20%, a traves de una selección aleatoria de imagenes de cada una de las diferentes categorias.
 
+Una vez teniendo las imágenes distribuidas de esta manera se procedio al tratado de las imágenes en donde se realizo la operación de _rescale_ para convertir el valor de cada uno de los pixeles de la imagen en un valor entre 0 y 1 para facilitar el procesamiento del modelo.  Cabe destacar que tambien se cambio la escala de color de RGB a una escala de grises, esto con el fin de que el modelo no aprenda la paleta de colores de los diferentes videojuegos y que busque aprender otros detalles, como los gráficos y la distribución del _HUD_.
 
-### Comparación de Modelos
+## Modelo
+
+El modelo realizado, toma de referencia 2 articulos encontrados que hablan sobre la clasificación de imágenes, estos articulos fueron seleccionados por una fácil comprensión y que aborda la clasificación de imágenes de manera similar a lo abordado en clases con un número superior a 5 clases a ser clasificadas. 
+Es un modelo secuencial que esta formado por 10 capas:
+* InputLayer
+* Conv2D
+* MaxPooling2D
+* Conv2D
+* Flatten
+* Dense
+* Dropout: esta capa esta configurada para congelar el 20% de los nodos en este punto y solo dejando que pase el 80% de las nueronas en este punto, una técnica utilizada para evitar el _overfitting_
+* Dense: esta capa cuenta con la función de activación _Sigmoid_ la cual es usada para obtener el output como una probabilidad, puesto que maneja unicamente valores entre 0 y 1. A diferencia de _ReLU_, esta gráfica se muestra en un curva para buscar el resultado más probable. 
+* Dropout: esta capa esta configurada para congelar el 20% de los nodos en este punto y solo dejando que pase el 80% de las nueronas en este punto, una técnica utilizada para evitar el _overfitting_.
+* Dense: Esta última capa cuenta con la función de activación _Softmax_ esto para sumar cada una de los valores presentados en los nodos y obtener valores entre 0 y 1 de cada una de las 10 posibles categorias, y en donde el número este más cerca de 1 significa que la imágen pertenece a esta categoria. 
+
+Al ejecutar el modelo se establece un _categorical_crossentropy_, esto para definir que es una clasificación de más de 2 clases. El optimizador en esta caso es _adam_, el cual permite una adaptabilidad en el _learning rate_ conforme las épocas progresan, es un optimizador que no es demandante para la computadora mantiendo una eficiencia competitiva. Las métricas que se obtienen son _Loss_ (perdida) y _Acc_ (precisión) las cuales son graficadas como se muestra en la tabla debajo. Y este modelo es entrenado en 8 epocas en un tiempo aproximado de 30 minutos.
+
+### Comparación de Modelos y Resultados
+
+#### Cambios
+Los cambios realizados a la primera versión para ser mejorado consistio unicamente en aumentar el número de epocas con el fin de mejorar la predicción del modelo al recibir imágenes externas al dataset. 
+Se probo cambiar el número de capas y aunque esto demostro ser más eficiente en el tiempo de entrenamiento dando un resultado similar en _acc_ y _lost_ se generarón más errores dentro de la matriz de confusión.
 
 | | Modelo Actual | Modelo Mejorado |
 | -------------- | -------------- | -------- |
